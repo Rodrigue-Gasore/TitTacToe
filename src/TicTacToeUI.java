@@ -23,7 +23,6 @@ public class TicTacToeUI extends JFrame {
 
     private TicTacToe.Seed currentPlayer;
 
-    private TicTacToe.Seed[][] board   ;
     private DrawCanvas canvas;
     private JLabel statusBar;
     TicTacToe ticTacToe;
@@ -32,8 +31,8 @@ public class TicTacToeUI extends JFrame {
 
     public TicTacToeUI() {
 
-        board = new TicTacToe.Seed[TicTacToe.ROWS][TicTacToe.COLS];
-        ticTacToe = new TicTacToe(currentState,currentOption,currentPlayer,board);
+
+        ticTacToe = new TicTacToe(currentState,currentOption,currentPlayer);
         int n = JOptionPane.showConfirmDialog(
                 this,
                 "Select YES if you want two Players or NO if you want to play with the computer!",
@@ -126,13 +125,13 @@ public class TicTacToeUI extends JFrame {
                 for (int col = 0; col < TicTacToe.COLS; ++col) {
                     int x1 = col * CELL_SIZE + CELL_PADDING;
                     int y1 = row * CELL_SIZE + CELL_PADDING;
-                    if (board[row][col] == TicTacToe.Seed.CROSS) {
+                    if (ticTacToe.getBoard()[row][col] == TicTacToe.Seed.CROSS) {
                         g2d.setColor(Color.RED);
                         int x2 = (col + 1) * CELL_SIZE - CELL_PADDING;
                         int y2 = (row + 1) * CELL_SIZE - CELL_PADDING;
                         g2d.drawLine(x1, y1, x2, y2);
                         g2d.drawLine(x2, y1, x1, y2);
-                    } else if (board[row][col] == TicTacToe.Seed.NOUGHT) {
+                    } else if (ticTacToe.getBoard()[row][col] == TicTacToe.Seed.NOUGHT) {
                         g2d.setColor(Color.BLUE);
                         g2d.drawOval(x1, y1, SYMBOL_SIZE, SYMBOL_SIZE);
                     }

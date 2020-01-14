@@ -25,11 +25,12 @@ public class TicTacToe {
 
     private Seed[][] board   ;
 
-    public TicTacToe(GameState currentState, GameOption currentOption, Seed currentPlayer, Seed[][] board){
+    public TicTacToe(GameState currentState, GameOption currentOption, Seed currentPlayer){
+
         this.currentState=currentState;
         this.currentOption=currentOption;
         this.currentPlayer=currentPlayer;
-        this.board=board;
+        this.board = new TicTacToe.Seed[TicTacToe.ROWS][TicTacToe.COLS];
     }
 
     public void initGame() {
