@@ -3,6 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="e7dda8e0-8193-497a-995e-ed1571a02c72" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TicTacToe/TicTacToe.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TicTacToe/TicTacToe.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TicTacToe/TicTacToeUI$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TicTacToe/TicTacToeUI$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TicTacToe/TicTacToeUI$DrawCanvas.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TicTacToe/TicTacToeUI$DrawCanvas.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TicTacToe/TicTacToeUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TicTacToe/TicTacToeUI.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/TicTacToe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TicTacToe.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/TicTacToeUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TicTacToeUI.java" afterDir="false" />
     </list>
@@ -35,12 +39,12 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="2" />
-          <entry key="java" value="2473" />
+          <entry key="java" value="2717" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="2473" />
+          <entry key="JAVA" value="2717" />
           <entry key="PLAIN_TEXT" value="2" />
         </counts>
       </usages-collector>
@@ -64,8 +68,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/TicTacToeUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+            <state relative-caret-position="-119">
+              <caret line="32" column="43" lean-forward="true" selection-start-line="32" selection-start-column="43" selection-end-line="32" selection-end-column="43" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -76,8 +80,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/TicTacToe.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
-              <caret line="131" lean-forward="true" selection-start-line="131" selection-end-line="131" />
+            <state relative-caret-position="281">
+              <caret line="107" column="4" selection-start-line="107" selection-start-column="4" selection-end-line="107" selection-end-column="4" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -149,7 +153,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1579019252761" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1579252920638" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RunDashboard">
@@ -321,8 +325,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/TicTacToeUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+        <state relative-caret-position="-119">
+          <caret line="32" column="43" lean-forward="true" selection-start-line="32" selection-start-column="43" selection-end-line="32" selection-end-column="43" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -331,8 +335,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/TicTacToe.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="131" lean-forward="true" selection-start-line="131" selection-end-line="131" />
+        <state relative-caret-position="281">
+          <caret line="107" column="4" selection-start-line="107" selection-start-column="4" selection-end-line="107" selection-end-column="4" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

@@ -16,12 +16,6 @@ public class TicTacToeUI extends JFrame {
     public static final int SYMBOL_STROKE_WIDTH = 8;
 
 
-    private TicTacToe.GameState currentState;
-
-
-    private TicTacToe.GameOption currentOption;
-
-    private TicTacToe.Seed currentPlayer;
 
     private DrawCanvas canvas;
     private JLabel statusBar;
@@ -32,21 +26,22 @@ public class TicTacToeUI extends JFrame {
     public TicTacToeUI() {
 
 
-        ticTacToe = new TicTacToe(currentState,currentOption,currentPlayer);
         int n = JOptionPane.showConfirmDialog(
                 this,
                 "Select YES if you want two Players or NO if you want to play with the computer!",
                 "Choose game option",
                 JOptionPane.YES_NO_OPTION);
         if (n==0){
-            ticTacToe.setCurrentOption(TicTacToe.GameOption.TWO_PlAYERS);
+            TicTacToe.currentOption=TicTacToe.GameOption.TWO_PlAYERS;
         }
         else if (n==1){
-            ticTacToe.setCurrentOption(TicTacToe.GameOption.ONE_PLAYER);
+            TicTacToe.currentOption=TicTacToe.GameOption.ONE_PLAYER;
         }
         else {
             System.exit(0);
         }
+
+        ticTacToe = new TicTacToe();
         canvas = new DrawCanvas();
         canvas.setPreferredSize(new Dimension(CANVAS_WIDTH, CANVAS_HEIGHT));
 
@@ -62,14 +57,14 @@ public class TicTacToeUI extends JFrame {
                 int rowSelected = mouseY / CELL_SIZE;
                 int colSelected = mouseX / CELL_SIZE;
 
-                if (ticTacToe.getCurrentState() == TicTacToe.GameState.PLAYING) {
+                if (TicTacToe.currentState == TicTacToe.GameState.PLAYING) {
                     if (rowSelected >= 0 && rowSelected < TicTacToe.ROWS && colSelected >= 0
-                            && colSelected < TicTacToe.COLS && ticTacToe.getBoard()[rowSelected][colSelected] == TicTacToe.Seed.EMPTY) {
+                            && colSelected < TicTacToe.COLS &&TicTacToe.board[rowSelected][colSelected] == TicTacToe.Seed.EMPTY) {
 
-                        ticTacToe.getBoard()[rowSelected][colSelected] = ticTacToe.getCurrentPlayer();
-                        ticTacToe.updateGame(ticTacToe.getCurrentPlayer(), rowSelected, colSelected);
+                        //ticTacToe.getBoard()[rowSelected][colSelected] = ticTacToe.getCurrentPlayer();
+                        ticTacToe.updateGame(TicTacToe.currentPlayer, rowSelected, colSelected);
 
-                        ticTacToe.setCurrentPlayer((ticTacToe.getCurrentPlayer() == TicTacToe.Seed.CROSS) ? TicTacToe.Seed.NOUGHT : TicTacToe.Seed.CROSS);
+                        TicTacToe.currentPlayer=(TicTacToe.currentPlayer == TicTacToe.Seed.CROSS) ? TicTacToe.Seed.NOUGHT : TicTacToe.Seed.CROSS;
                     }
                 }else {
                     ticTacToe.initGame();
@@ -125,13 +120,13 @@ public class TicTacToeUI extends JFrame {
                 for (int col = 0; col < TicTacToe.COLS; ++col) {
                     int x1 = col * CELL_SIZE + CELL_PADDING;
                     int y1 = row * CELL_SIZE + CELL_PADDING;
-                    if (ticTacToe.getBoard()[row][col] == TicTacToe.Seed.CROSS) {
+                    if (TicTacToe.board[row][col] == TicTacToe.Seed.CROSS) {
                         g2d.setColor(Color.RED);
                         int x2 = (col + 1) * CELL_SIZE - CELL_PADDING;
                         int y2 = (row + 1) * CELL_SIZE - CELL_PADDING;
                         g2d.drawLine(x1, y1, x2, y2);
                         g2d.drawLine(x2, y1, x1, y2);
-                    } else if (ticTacToe.getBoard()[row][col] == TicTacToe.Seed.NOUGHT) {
+                    } else if (TicTacToe.board[row][col] == TicTacToe.Seed.NOUGHT) {
                         g2d.setColor(Color.BLUE);
                         g2d.drawOval(x1, y1, SYMBOL_SIZE, SYMBOL_SIZE);
                     }
@@ -139,33 +134,33 @@ public class TicTacToeUI extends JFrame {
             }
 
 
-            if (ticTacToe.getCurrentState() == TicTacToe.GameState.PLAYING) {
+            if (ticTacToe.currentState == TicTacToe.GameState.PLAYING) {
                 statusBar.setForeground(Color.BLACK);
-                if (ticTacToe.getCurrentPlayer() == TicTacToe.Seed.CROSS) {
-                    if (ticTacToe.getCurrentOption()==TicTacToe.GameOption.ONE_PLAYER){
+                if (TicTacToe.currentPlayer == TicTacToe.Seed.CROSS) {
+                    if (TicTacToe.currentOption==TicTacToe.GameOption.ONE_PLAYER){
                         statusBar.setText("Computer's Turn");
-                        computerChoice = ticTacToe.computerMove(ticTacToe.getBoard());
-                        ticTacToe.getBoard()[computerChoice.x][computerChoice.y] = ticTacToe.getCurrentPlayer();
-                        ticTacToe.updateGame(ticTacToe.getCurrentPlayer(), computerChoice.x, computerChoice.y);
-                        ticTacToe.setCurrentPlayer((ticTacToe.getCurrentPlayer() == TicTacToe.Seed.CROSS) ? TicTacToe.Seed.NOUGHT : TicTacToe.Seed.CROSS);
+                        computerChoice = ticTacToe.computerMove(TicTacToe.board);
+                        //ticTacToe.getBoard()[computerChoice.x][computerChoice.y] = ticTacToe.getCurrentPlayer();
+                        ticTacToe.updateGame(TicTacToe.currentPlayer, computerChoice.x, computerChoice.y);
+                        TicTacToe.currentPlayer=(TicTacToe.currentPlayer == TicTacToe.Seed.CROSS) ? TicTacToe.Seed.NOUGHT : TicTacToe.Seed.CROSS;
                     }else {
                         statusBar.setText("X's Turn");
                     }
                 } else {
                     statusBar.setText("O's Turn");
                 }
-            } else if (ticTacToe.getCurrentState() == TicTacToe.GameState.DRAW) {
+            } else if (TicTacToe.currentState == TicTacToe.GameState.DRAW) {
                 statusBar.setForeground(Color.RED);
                 statusBar.setText("It's a Draw! Click to play again.");
-            } else if (ticTacToe.getCurrentState() == TicTacToe.GameState.CROSS_WON) {
+            } else if (TicTacToe.currentState == TicTacToe.GameState.CROSS_WON) {
                 statusBar.setForeground(Color.RED);
-                if (ticTacToe.getCurrentOption()==TicTacToe.GameOption.ONE_PLAYER){
+                if (TicTacToe.currentOption==TicTacToe.GameOption.ONE_PLAYER){
                     statusBar.setText("'Computer' Won! Click to play again.");
                 }else {
                     statusBar.setText("'X' Won! Click to play again.");
                 }
 
-            } else if (ticTacToe.getCurrentState() == TicTacToe.GameState.NOUGHT_WON) {
+            } else if (TicTacToe.currentState == TicTacToe.GameState.NOUGHT_WON) {
                 statusBar.setForeground(Color.RED);
                 statusBar.setText("'O' Won! Click to play again.");
             }

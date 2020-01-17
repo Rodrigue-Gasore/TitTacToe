@@ -10,27 +10,25 @@ public class TicTacToe {
     public enum GameState {
         PLAYING, DRAW, CROSS_WON, NOUGHT_WON
     }
-    private GameState currentState;
+    public static GameState currentState;
 
     public enum GameOption{
         TWO_PlAYERS, ONE_PLAYER
     }
 
-    private GameOption currentOption;
+    public static GameOption currentOption;
 
     public enum Seed {
         EMPTY, CROSS, NOUGHT
     }
-    private Seed currentPlayer;
+    public static Seed currentPlayer;
 
-    private Seed[][] board   ;
+    public static Seed[][] board   ;
 
-    public TicTacToe(GameState currentState, GameOption currentOption, Seed currentPlayer){
+    public TicTacToe(){
 
-        this.currentState=currentState;
-        this.currentOption=currentOption;
-        this.currentPlayer=currentPlayer;
         this.board = new TicTacToe.Seed[TicTacToe.ROWS][TicTacToe.COLS];
+        initGame();
     }
 
     public void initGame() {
@@ -45,6 +43,7 @@ public class TicTacToe {
 
 
     public void updateGame(Seed theSeed, int rowSelected, int colSelected) {
+        board[rowSelected][colSelected] = theSeed;
         if (hasWon(theSeed, rowSelected, colSelected)) {  // check for win
             currentState = (theSeed == Seed.CROSS) ? GameState.CROSS_WON : GameState.NOUGHT_WON;
         } else if (isDraw()) {  // check for draw
@@ -106,35 +105,5 @@ public class TicTacToe {
                 && board[2][0] == theSeed);
     }
 
-    public GameState getCurrentState() {
-        return currentState;
-    }
 
-    public void setCurrentState(GameState currentState) {
-        this.currentState = currentState;
-    }
-
-    public GameOption getCurrentOption() {
-        return currentOption;
-    }
-
-    public void setCurrentOption(GameOption currentOption) {
-        this.currentOption = currentOption;
-    }
-
-    public Seed getCurrentPlayer() {
-        return currentPlayer;
-    }
-
-    public void setCurrentPlayer(Seed currentPlayer) {
-        this.currentPlayer = currentPlayer;
-    }
-
-    public Seed[][] getBoard() {
-        return board;
-    }
-
-    public void setBoard(Seed[][] board) {
-        this.board = board;
-    }
 }
