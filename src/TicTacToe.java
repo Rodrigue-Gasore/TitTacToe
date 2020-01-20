@@ -49,10 +49,11 @@ public class TicTacToe {
         } else if (isDraw()) {  // check for draw
             currentState = GameState.DRAW;
         }
+        currentPlayer=(theSeed == Seed.CROSS) ? Seed.NOUGHT : Seed.CROSS;
 
     }
 
-    public Point computerMove(Seed[][] board){
+    public Point computerMove(){
         Point position = null;
 
         Random randomRow;
@@ -63,10 +64,8 @@ public class TicTacToe {
         while (!freeSeed){
             randomRow = new Random();
             row=randomRow.nextInt(this.ROWS);
-            System.out.println("row "+row);
             randomCol = new Random();
             col=randomCol.nextInt(this.COLS);
-            System.out.println("col "+col);
             if(board[row][col]== Seed.EMPTY){
                 position = new Point(row,col);
                 freeSeed=true;

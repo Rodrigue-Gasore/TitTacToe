@@ -61,13 +61,11 @@ public class TicTacToeUI extends JFrame {
                     if (rowSelected >= 0 && rowSelected < TicTacToe.ROWS && colSelected >= 0
                             && colSelected < TicTacToe.COLS &&TicTacToe.board[rowSelected][colSelected] == TicTacToe.Seed.EMPTY) {
 
-                        //ticTacToe.getBoard()[rowSelected][colSelected] = ticTacToe.getCurrentPlayer();
                         ticTacToe.updateGame(TicTacToe.currentPlayer, rowSelected, colSelected);
 
-                        TicTacToe.currentPlayer=(TicTacToe.currentPlayer == TicTacToe.Seed.CROSS) ? TicTacToe.Seed.NOUGHT : TicTacToe.Seed.CROSS;
                     }
                 }else {
-                    ticTacToe.initGame();
+                    new TicTacToe();
                 }
 
                 System.out.println("check clicks");
@@ -91,7 +89,7 @@ public class TicTacToeUI extends JFrame {
         setTitle("Tic Tac Toe");
         setVisible(true);
 
-        ticTacToe.initGame();
+        new TicTacToe();
     }
 
 
@@ -139,10 +137,8 @@ public class TicTacToeUI extends JFrame {
                 if (TicTacToe.currentPlayer == TicTacToe.Seed.CROSS) {
                     if (TicTacToe.currentOption==TicTacToe.GameOption.ONE_PLAYER){
                         statusBar.setText("Computer's Turn");
-                        computerChoice = ticTacToe.computerMove(TicTacToe.board);
-                        //ticTacToe.getBoard()[computerChoice.x][computerChoice.y] = ticTacToe.getCurrentPlayer();
+                        computerChoice = ticTacToe.computerMove();
                         ticTacToe.updateGame(TicTacToe.currentPlayer, computerChoice.x, computerChoice.y);
-                        TicTacToe.currentPlayer=(TicTacToe.currentPlayer == TicTacToe.Seed.CROSS) ? TicTacToe.Seed.NOUGHT : TicTacToe.Seed.CROSS;
                     }else {
                         statusBar.setText("X's Turn");
                     }
