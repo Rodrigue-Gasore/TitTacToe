@@ -74,6 +74,21 @@ public class TicTacToe {
         return position;
     }
 
+    public void makeMove(int row, int col, Graphics2D g2d, int cellSize, int cellPadding, int symbolSize){
+        int x1 = col * cellSize + cellPadding;
+        int y1 = row * cellSize + cellPadding;
+        if (TicTacToe.board[row][col] == TicTacToe.Seed.CROSS) {
+            g2d.setColor(Color.RED);
+            int x2 = (col + 1) * cellSize - cellPadding;
+            int y2 = (row + 1) * cellSize - cellPadding;
+            g2d.drawLine(x1, y1, x2, y2);
+            g2d.drawLine(x2, y1, x1, y2);
+        } else if (TicTacToe.board[row][col] == TicTacToe.Seed.NOUGHT) {
+            g2d.setColor(Color.BLUE);
+            g2d.drawOval(x1, y1, symbolSize, symbolSize);
+        }
+    }
+
 
     public boolean isDraw() {
         for (int row = 0; row < ROWS; ++row) {
