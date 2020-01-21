@@ -66,7 +66,7 @@ public class TicTacToe {
             row=randomRow.nextInt(this.ROWS);
             randomCol = new Random();
             col=randomCol.nextInt(this.COLS);
-            if(board[row][col]== Seed.EMPTY){
+            if(makeMove(row,col,Seed.EMPTY)){
                 position = new Point(row,col);
                 freeSeed=true;
             }
@@ -74,26 +74,19 @@ public class TicTacToe {
         return position;
     }
 
-    public void makeMove(int row, int col, Graphics2D g2d, int cellSize, int cellPadding, int symbolSize){
-        int x1 = col * cellSize + cellPadding;
-        int y1 = row * cellSize + cellPadding;
-        if (TicTacToe.board[row][col] == TicTacToe.Seed.CROSS) {
-            g2d.setColor(Color.RED);
-            int x2 = (col + 1) * cellSize - cellPadding;
-            int y2 = (row + 1) * cellSize - cellPadding;
-            g2d.drawLine(x1, y1, x2, y2);
-            g2d.drawLine(x2, y1, x1, y2);
-        } else if (TicTacToe.board[row][col] == TicTacToe.Seed.NOUGHT) {
-            g2d.setColor(Color.BLUE);
-            g2d.drawOval(x1, y1, symbolSize, symbolSize);
+    public boolean makeMove(int row, int col, Seed theSeed){
+        if (board[row][col] == theSeed){
+            return true;
         }
+        return false;
     }
+
 
 
     public boolean isDraw() {
         for (int row = 0; row < ROWS; ++row) {
             for (int col = 0; col < COLS; ++col) {
-                if (board[row][col] == Seed.EMPTY) {
+                if (makeMove(row,col,Seed.EMPTY)) {
                     return false;
                 }
             }
@@ -103,20 +96,20 @@ public class TicTacToe {
 
 
     public boolean hasWon(Seed theSeed, int rowSelected, int colSelected) {
-        return (board[rowSelected][0] == theSeed
-                && board[rowSelected][1] == theSeed
-                && board[rowSelected][2] == theSeed
-                || board[0][colSelected] == theSeed
-                && board[1][colSelected] == theSeed
-                && board[2][colSelected] == theSeed
+        return (makeMove(rowSelected,0,theSeed)
+                && makeMove(rowSelected,1,theSeed)
+                && makeMove(rowSelected,2,theSeed)
+                || makeMove(0,colSelected,theSeed)
+                && makeMove(1,colSelected,theSeed)
+                && makeMove(2,colSelected,theSeed)
                 || rowSelected == colSelected
-                && board[0][0] == theSeed
-                && board[1][1] == theSeed
-                && board[2][2] == theSeed
+                && makeMove(0,0,theSeed)
+                && makeMove(1,1,theSeed)
+                && makeMove(2,2,theSeed)
                 || rowSelected + colSelected == 2
-                && board[0][2] == theSeed
-                && board[1][1] == theSeed
-                && board[2][0] == theSeed);
+                && makeMove(0,2,theSeed)
+                && makeMove(1,1,theSeed)
+                && makeMove(2,0,theSeed));
     }
 
 

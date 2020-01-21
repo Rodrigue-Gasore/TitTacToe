@@ -59,7 +59,7 @@ public class TicTacToeUI extends JFrame {
 
                 if (TicTacToe.currentState == TicTacToe.GameState.PLAYING) {
                     if (rowSelected >= 0 && rowSelected < TicTacToe.ROWS && colSelected >= 0
-                            && colSelected < TicTacToe.COLS &&TicTacToe.board[rowSelected][colSelected] == TicTacToe.Seed.EMPTY) {
+                            && colSelected < TicTacToe.COLS &&ticTacToe.makeMove(rowSelected,colSelected,TicTacToe.Seed.EMPTY)) {
 
                         ticTacToe.updateGame(TicTacToe.currentPlayer, rowSelected, colSelected);
 
@@ -116,7 +116,18 @@ public class TicTacToeUI extends JFrame {
                     BasicStroke.JOIN_ROUND));  // Graphics2D only
             for (int row = 0; row < TicTacToe.ROWS; ++row) {
                 for (int col = 0; col < TicTacToe.COLS; ++col) {
-                    ticTacToe.makeMove(row,col,g2d,CELL_SIZE,CELL_PADDING,SYMBOL_SIZE);
+                    int x1 = col * CELL_SIZE + CELL_PADDING;
+                    int y1 = row * CELL_SIZE + CELL_PADDING;
+                    if (ticTacToe.makeMove(row,col,TicTacToe.Seed.CROSS)) {
+                        g2d.setColor(Color.RED);
+                        int x2 = (col + 1) * CELL_SIZE - CELL_PADDING;
+                        int y2 = (row + 1) * CELL_SIZE - CELL_PADDING;
+                        g2d.drawLine(x1, y1, x2, y2);
+                        g2d.drawLine(x2, y1, x1, y2);
+                    } else if (ticTacToe.makeMove(row,col,TicTacToe.Seed.NOUGHT)) {
+                        g2d.setColor(Color.BLUE);
+                        g2d.drawOval(x1, y1, SYMBOL_SIZE, SYMBOL_SIZE);
+                    }
                 }
             }
 
